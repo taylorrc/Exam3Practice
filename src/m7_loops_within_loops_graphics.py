@@ -247,15 +247,13 @@ def many_hourglasses(window, square, m, colors):
         rectangle = rg.Rectangle(corner1, corner2)
         rectangle.attach_to(window)
 
-        corner1 = rg.Point(corner1.x + (2 + k * 2) * radius, corner1.y -
-                                +                           1.732 * radius)
-        corner2 = rg.Point(corner2.x + (4 + k * 2) * radius, corner2.y +
-                                +                           1.732 * radius)
-
+        corner1 = rg.Point(corner1.x + (2 + k * 2) * radius, corner1.y - 1.732 * radius)
+        corner2 = rg.Point(corner2.x + (4 + k * 2) * radius, corner2.y + 1.732 * radius)
 
     for k in range(m):
-         hourglass(window, k + 1, glass_center, radius, colors[k % len(colors)])
-         glass_center = rg.Point(glass_center.x + (3 + k * 2) * radius, glass_center.y)
+        hourglass(window, k + 1, glass_center, radius, colors[k % len(colors)])
+
+        glass_center = rg.Point(glass_center.x + (3 + k * 2) * radius, glass_center.y)
 # ----------------------------------------------------------------------
 # Calls  main  to start the ball rolling.
 # ----------------------------------------------------------------------
