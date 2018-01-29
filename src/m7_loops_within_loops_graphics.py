@@ -221,21 +221,41 @@ def many_hourglasses(window, square, m, colors):
     #                         a correct "hourglass" function above)
     #    TIME ESTIMATE:  20 minutes (warning: this problem is challenging)
     # ------------------------------------------------------------------
+    # square.attach_to(window)
+    # window.render()
+    # for k in range(m):
+    #     width_of_rectangle = (square.length_of_each_side / 2) * (k+1)
+    #     if k > 0:
+    #         center = rg.Point((square.center.x + ((k+1) * width_of_rectangle)) - width_of_rectangle / 2, square.center.y)
+    #     else:
+    #         center = rg.Point(square.center.x + (k * width_of_rectangle), square.center.y)
+    #
+    #
+    #     rectangle = rg.Rectangle(corner1, corner2)
+    #     rectangle.attach_to(window)
+    #     hourglass(window, k + 1, center, (square.length_of_each_side / 2), colors[k % len(colors)])
+    #
+
+    radius = square.length_of_each_side / 2
+    center = square.center
+    glass_center = square.center
     square.attach_to(window)
-    window.render()
+    corner1 = rg.Point(center.x - radius, center.y - radius)
+    corner2 = rg.Point(center.x + radius, center.y + radius)
+
     for k in range(m):
-        width_of_rectangle = (square.length_of_each_side / 2) * (k+1)
-        if k > 0:
-            center = rg.Point((square.center.x + ((k+1) * width_of_rectangle)) - width_of_rectangle / 2, square.center.y)
-        else:
-            center = rg.Point(square.center.x + (k * width_of_rectangle), square.center.y)
-
-
         rectangle = rg.Rectangle(corner1, corner2)
         rectangle.attach_to(window)
-        hourglass(window, k + 1, center, (square.length_of_each_side / 2), colors[k % len(colors)])
+
+        corner1 = rg.Point(corner1.x + (2 + k * 2) * radius, corner1.y -
+                                +                           1.732 * radius)
+        corner2 = rg.Point(corner2.x + (4 + k * 2) * radius, corner2.y +
+                                +                           1.732 * radius)
 
 
+    for k in range(m):
+         hourglass(window, k + 1, glass_center, radius, colors[k % len(colors)])
+         glass_center = rg.Point(glass_center.x + (3 + k * 2) * radius, glass_center.y)
 # ----------------------------------------------------------------------
 # Calls  main  to start the ball rolling.
 # ----------------------------------------------------------------------
